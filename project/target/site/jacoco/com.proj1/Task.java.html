@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Task.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">project</a> &gt; <a href="index.source.html" class="el_package">com.proj1</a> &gt; <span class="el_source">Task.java</span></div><h1>Task.java</h1><pre class="source lang-java linenums">package com.proj1;
+
+public class Task {
+
+    private
+        static final int VALID_10_DIGITS = 1;
+        static final int VALID_20_DIGITS = 2;
+        static final int VALID_50_DIGITS = 3;
+        static final int INVALID = -1;
+
+        String taskID;    //no longer than 10 characters, cannot be null
+        String name;      //no longer than 20 characters, cannot be null
+        String desc;      //no longer than 50 characters, cannot be null
+
+
+        /*
+         * @params
+         * t_value = string to be checked
+         * 
+         * @return an int value that will be used to check validity
+         * 
+         * Simple function that takes a string and returns an int
+         * based on the length of the string.
+         * Used to validate correct length
+         */
+        int lenValidator(String t_value)
+        {
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">            if(t_value == null) //first check if string is null to avoid nullPointerException</span>
+            {
+<span class="nc" id="L30">                return INVALID;</span>
+            }
+
+            //Check if the value is within the valid range of 0-50
+<span class="pc bpc" id="L34" title="1 of 4 branches missed.">            if(t_value.length() &gt;= 1 &amp;&amp; t_value.length() &lt;= 50)</span>
+            {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">                if(t_value.length() &lt;=  10)</span>
+                {
+<span class="fc" id="L38">                    return VALID_10_DIGITS;</span>
+                }
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                else if(t_value.length() &lt;= 20)</span>
+                {
+<span class="fc" id="L42">                    return VALID_20_DIGITS;</span>
+                }
+                else
+                {
+<span class="fc" id="L46">                    return VALID_50_DIGITS;</span>
+                }
+            }
+            else
+            {
+<span class="fc" id="L51">                return INVALID;</span>
+            }
+        }
+    
+    public
+        Task() //Default constructor
+<span class="fc" id="L57">        {</span>
+<span class="fc" id="L58">            taskID = &quot;-1&quot;;</span>
+<span class="fc" id="L59">            name = &quot;Default&quot;;</span>
+<span class="fc" id="L60">            desc = &quot;Description&quot;;</span>
+<span class="fc" id="L61">        }</span>
+        Task(String t_Id, String t_name, String t_desc)
+<span class="fc" id="L63">        {</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            if(lenValidator(t_Id) != VALID_10_DIGITS)</span>
+            {
+<span class="fc" id="L66">                throw new IllegalArgumentException(&quot;Invalid task param at ID&quot;);</span>
+            }
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">            if(lenValidator(t_name) == INVALID || lenValidator(t_name) == VALID_50_DIGITS)</span>
+            {
+<span class="fc" id="L70">                throw new IllegalArgumentException(&quot;Invalid task param at Name&quot;);</span>
+            }
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if(lenValidator(t_desc) == INVALID)</span>
+            {
+<span class="fc" id="L74">                throw new IllegalArgumentException(&quot;Invalid task param at Description&quot;);</span>
+            }
+
+<span class="fc" id="L77">            this.taskID = t_Id;</span>
+<span class="fc" id="L78">            this.name = t_name;</span>
+<span class="fc" id="L79">            this.desc = t_desc;</span>
+<span class="fc" id="L80">        }</span>
+
+        //Getters
+        String getTaskId()
+        {
+<span class="fc" id="L85">            return this.taskID;</span>
+        }
+        String getName()
+        {
+<span class="fc" id="L89">            return this.name;</span>
+        }
+        String getDesc()
+        {
+<span class="fc" id="L93">            return this.desc;</span>
+        }
+
+
+        //Setters
+        void setTaskId(String t_taskId)
+        {
+<span class="nc" id="L100">            this.taskID = t_taskId;</span>
+<span class="nc" id="L101">        }</span>
+        void setName(String t_name)
+        {
+<span class="fc" id="L104">            this.name = t_name;</span>
+<span class="fc" id="L105">        }</span>
+        void setDesc(String t_desc)
+        {
+<span class="fc" id="L108">            this.desc = t_desc;</span>
+<span class="fc" id="L109">        }</span>
+
+
+
+    //toString override
+    @Override
+    public String toString()
+    {
+<span class="fc" id="L117">        return this.taskID + &quot; | Name: &quot; + this.name + &quot;\nDescription: \n&quot; </span>
+        + this.desc;
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

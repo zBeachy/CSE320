@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContactService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">project</a> &gt; <a href="index.source.html" class="el_package">com.proj1</a> &gt; <span class="el_source">ContactService.java</span></div><h1>ContactService.java</h1><pre class="source lang-java linenums">package com.proj1;
+
+import java.util.*;
+
+
+<span class="fc" id="L6">public class ContactService</span>
+{
+<span class="fc" id="L8">    private Vector&lt;Contact&gt; contacts = new Vector&lt;Contact&gt;();</span>
+
+    private
+        static final int VALID_10_DIGITS = 1;
+        static final int VALID_EXACT_10_DIGITS = 2;
+        static final int VALID_30_DIGITS = 3;
+        static final int INVALID = -1;
+
+    public
+        void addContact(Contact t_contact)
+        {
+<span class="fc" id="L19">            contacts.add(t_contact);</span>
+<span class="fc" id="L20">        }</span>
+
+        Contact contactLookup(String t_Id)
+        {
+<span class="pc bfc" id="L24" title="All 2 branches covered.">            for(int i = 0; i &lt; contacts.size() ; ++i)</span>
+            {
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">                if(contacts.elementAt(i).contactId == t_Id)</span>
+                {
+<span class="fc" id="L28">                    return contacts.elementAt(i);</span>
+                }
+            }
+<span class="fc" id="L31">            System.out.println(&quot;Contact not found.&quot;);</span>
+<span class="fc" id="L32">            Contact emptyContact = new Contact();</span>
+<span class="fc" id="L33">            return emptyContact;</span>
+        }
+
+        void changeContactFirstName(Contact t_contact, String t_firstName)
+        {
+<span class="fc" id="L38">            int isValid = t_contact.lenValidator(t_firstName);</span>
+<span class="pc bpc" id="L39" title="3 of 4 branches missed.">            if(isValid == VALID_10_DIGITS || isValid == VALID_EXACT_10_DIGITS)</span>
+            {
+<span class="fc" id="L41">                t_contact.updateFirstName(t_firstName);</span>
+            }
+            else
+            {
+<span class="nc" id="L45">                System.out.println(&quot;Invalid length on First Name&quot;);</span>
+            }
+
+<span class="fc" id="L48">        }</span>
+
+        void changeContactLastName(Contact t_contact, String t_lastName)
+        {
+<span class="fc" id="L52">            int isValid = t_contact.lenValidator(t_lastName);</span>
+<span class="pc bpc" id="L53" title="3 of 4 branches missed.">            if( isValid == VALID_10_DIGITS || isValid == VALID_EXACT_10_DIGITS)</span>
+            {
+<span class="fc" id="L55">                t_contact.updateLastName(t_lastName);</span>
+            }
+            else
+            {
+<span class="nc" id="L59">                System.out.println(&quot;Invalid length on Last Name&quot;);</span>
+
+            }
+
+<span class="fc" id="L63">        }</span>
+
+        void changeContactPhone(Contact t_contact, String t_phone)
+        {
+<span class="fc" id="L67">            int isValid = t_contact.lenValidator(t_phone);</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">            if( isValid == VALID_EXACT_10_DIGITS)</span>
+            {
+<span class="fc" id="L70">                t_contact.updatePhone(t_phone);</span>
+            }
+            else
+            {
+<span class="nc" id="L74">                System.out.println(&quot;Invalid length on phone number&quot;);</span>
+            }
+
+<span class="fc" id="L77">        }</span>
+
+        void changeContactAddr(Contact t_Contact, String t_address)
+        {
+<span class="fc" id="L81">            int isValid = t_Contact.lenValidator(t_address);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">            if (isValid == VALID_30_DIGITS)</span>
+            {
+<span class="fc" id="L84">                t_Contact.updateAddress(t_address);</span>
+            }
+            else
+            {
+<span class="nc" id="L88">                System.out.println(&quot;Invalid length on address&quot;);</span>
+            }
+
+<span class="fc" id="L91">        }</span>
+
+        void removeContact(Contact t_Contact)
+        {
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            for(int i = 0; i &lt; contacts.size(); ++i)</span>
+            {
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">                if(contacts.elementAt(i) == t_Contact)</span>
+                {
+<span class="fc" id="L99">                    contacts.removeElementAt(i);</span>
+                }
+            }
+<span class="fc" id="L102">        }</span>
+
+}
+    
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TaskService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">project</a> &gt; <a href="index.source.html" class="el_package">com.proj1</a> &gt; <span class="el_source">TaskService.java</span></div><h1>TaskService.java</h1><pre class="source lang-java linenums">package com.proj1;
+
+import java.util.*;
+
+<span class="fc" id="L5">public class TaskService {</span>
+
+<span class="fc" id="L7">    private Vector&lt;Task&gt; tasks = new Vector&lt;Task&gt;();</span>
+    
+    private
+    static final int VALID_10_DIGITS = 1;
+    static final int VALID_20_DIGITS = 2;
+    static final int VALID_50_DIGITS = 3;
+    static final int INVALID = -1;
+
+    public
+        void addTask(Task t_task)
+        {
+<span class="fc" id="L18">            tasks.add(t_task);</span>
+<span class="fc" id="L19">        }</span>
+
+        /*
+         * @params
+         *     t_taskId = task id to use to search for the task
+         * 
+         * @return either the found task or an empty one
+         * 
+         * takes a task id and iterates through the task list vector
+         * and returns the task if found
+         */
+        Task taskLookup(String t_taskId)
+        {
+<span class="pc bfc" id="L32" title="All 2 branches covered.">            for(int i = 0; i &lt; tasks.size() ; ++i)</span>
+            {
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">                if(tasks.elementAt(i).taskID == t_taskId)</span>
+                {
+<span class="fc" id="L36">                    return tasks.elementAt(i);</span>
+                }
+            }
+<span class="fc" id="L39">            System.out.println(&quot;Task not found.&quot;);</span>
+<span class="fc" id="L40">            Task emptyTask = new Task();</span>
+<span class="fc" id="L41">            return emptyTask;</span>
+        }
+
+        void changeTaskName(Task t_task, String t_name)
+        {
+<span class="fc" id="L46">            int isValid = t_task.lenValidator(t_name);</span>
+<span class="pc bpc" id="L47" title="2 of 4 branches missed.">            if (isValid == VALID_20_DIGITS || isValid == VALID_10_DIGITS)</span>
+            {
+<span class="fc" id="L49">                t_task.setName(t_name);</span>
+            }
+            else
+            {
+<span class="nc" id="L53">                System.out.println(&quot;Invalid length on name&quot;);</span>
+            }
+<span class="fc" id="L55">        }</span>
+
+        void changeDesc(Task t_task, String t_desc)
+        {
+<span class="fc" id="L59">            int isValid = t_task.lenValidator(t_desc);</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if (isValid != INVALID)</span>
+            {
+<span class="fc" id="L62">                t_task.setDesc(t_desc);</span>
+            }
+            else
+            {
+<span class="nc" id="L66">                System.out.println(&quot;Invalid length on description&quot;);</span>
+            }
+<span class="fc" id="L68">        }</span>
+
+        void removeTask(Task t_task)
+        {
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            for(int i = 0; i &lt; tasks.size(); ++i)</span>
+            {
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">                if(tasks.elementAt(i) == t_task)</span>
+                {
+<span class="fc" id="L76">                    tasks.removeElementAt(i);</span>
+                }
+            }
+<span class="fc" id="L79">        }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

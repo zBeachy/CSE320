@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+project,com.proj1,Appointment,19,110,3,13,8,27,6,12,3,7
+project,com.proj1,Contact,47,161,7,25,7,52,8,21,1,12
+project,com.proj1,ContactService,20,112,10,10,4,30,8,10,0,8
+project,com.proj1,TaskService,8,91,5,9,2,22,5,8,0,6
+project,com.proj1,AppointmentService,2,64,2,6,0,14,2,6,0,4
+project,com.proj1,Task,6,120,3,15,3,32,4,15,1,9
